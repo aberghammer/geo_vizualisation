@@ -6,12 +6,12 @@ import json
 import pandas as pd
 from shapely.geometry import Point, Polygon, shape
 
-### just save your mapbox_token in a file ###
-mapbox_access_token = open(".mapbox_token").read()
+### just save your mapbox_token in this file ###
+mapbox_access_token = open("./files/.mapbox_token").read()
 
 
 ### Read and prepare shape file for mapbox (you can download it here: https://www.arcgis.com/home/item.html?id=369c18dfc10d457d9d1afb28adcc537b) ###
-districts = gpd.read_file('./Munich_25_Bezirke_Dissolved.shp')
+districts = gpd.read_file('./files/Munich_25_Bezirke_Dissolved.shp')
 
 ### save as json file for further processing ###
 districts.to_file("districts_geo_json", driver="GeoJSON")
@@ -20,7 +20,7 @@ with open("districts_geo_json") as geofile:
 
 
 ### read the playground file (you can download it here: https://www.opengov-muenchen.de/dataset/oeffentliche-spielplaetze-muenchen)
-playgrounds = pd.read_csv("./spielplaetzemuenchenohneleerespalten2016-06-13.csv")
+playgrounds = pd.read_csv("./files/spielplaetzemuenchenohneleerespalten2016-06-13.csv")
 
 ### create points from lon and lat
 playgrounds_with_points = gpd.GeoDataFrame(
